@@ -26,3 +26,11 @@ Before running the application, ensure that you have the following installed:
    ```shell
    mvn clean test
    ```
+
+## Usage
+This API exposes mainly 4 endPoints: 
+
+- /users
+- /records
+- /operations
+- /login
