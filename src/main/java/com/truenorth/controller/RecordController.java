@@ -3,14 +3,12 @@ package com.truenorth.controller;
 import com.truenorth.dto.NewRecordDTO;
 import com.truenorth.entity.Record;
 import com.truenorth.service.RecordService;
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/records")
@@ -23,10 +21,8 @@ public class RecordController {
     }
 
     @GetMapping
-    public Page<Record> getRecord(@RequestParam(required = false) Long operationId,
-                                  @RequestParam(required = false) Long userId,
-                                  @PageableDefault(size = 10) Pageable pageable) {
-        return recordService.getRecords(operationId, userId, pageable);
+    public List<Record> getRecordsByUser(@RequestParam(name = "userName") String userName) {
+        return recordService.getRecords(userName);
     }
 
     @GetMapping("/{id}")

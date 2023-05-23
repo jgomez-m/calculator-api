@@ -2,7 +2,6 @@ package com.truenorth.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Record {
@@ -10,11 +9,11 @@ public class Record {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "operation_id", nullable = false)
     private Operation operation;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
@@ -26,15 +25,14 @@ public class Record {
 
     @Column
     private String operationResponse;
-
-    @Temporal(TemporalType.TIMESTAMP)
+    
     @Column(nullable = false)
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "deleted")
     private boolean deleted;
 
-    public Record(Long id, Operation operation, User user, double amount, double userBalance, String operationResponse, Date date) {
+    public Record(Long id, Operation operation, User user, double amount, double userBalance, String operationResponse, LocalDate date) {
         this.id = id;
         this.operation = operation;
         this.user = user;
@@ -45,7 +43,7 @@ public class Record {
     }
 
     public Record() {
-        this.date = new Date();
+        this.date = LocalDate.now();
     }
 
     public Long getId() {
@@ -96,11 +94,11 @@ public class Record {
         this.operationResponse = operationResponse;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

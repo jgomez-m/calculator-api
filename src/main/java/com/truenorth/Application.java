@@ -37,17 +37,17 @@ public class Application implements CommandLineRunner, WebMvcConfigurer {
 
         User user1 = new User();
         User user2 = new User();
-        user1.setUsername("juliangomez@gmail.com"); user1.setPassword("123"); user1.setStatus(User.Status.ACTIVE); user1.setBalance(1000.0);
-        user2.setUsername("test@test.com"); user2.setPassword("abc"); user2.setStatus(User.Status.ACTIVE); user2.setBalance(1000.0);
+        user1.setUsername("juliangomez@gmail.com"); user1.setPassword("123"); user1.setStatus(User.Status.ACTIVE); user1.setBalance(10000.0);
+        user2.setUsername("test@test.com"); user2.setPassword("abc"); user2.setStatus(User.Status.ACTIVE); user2.setBalance(10000.0);
         userRepository.save(user1);
         userRepository.save(user2);
 
-        Operation op1 = new Operation(Operation.Type.ADDITION, 100);
-        Operation op2 = new Operation(Operation.Type.SUBTRACTION, 100);
-        Operation op3 = new Operation(Operation.Type.MULTIPLICATION, 1000);
-        Operation op4 = new Operation(Operation.Type.DIVISION, 1000);
-        Operation op5 = new Operation(Operation.Type.SQUARE_ROOT, 10);
-        Operation op6 = new Operation(Operation.Type.RANDOM_STRING, 1);
+        Operation op1 = new Operation(Operation.Type.ADDITION, 10);
+        Operation op2 = new Operation(Operation.Type.SUBTRACTION, 10);
+        Operation op3 = new Operation(Operation.Type.MULTIPLICATION, 20);
+        Operation op4 = new Operation(Operation.Type.DIVISION, 20);
+        Operation op5 = new Operation(Operation.Type.SQUARE_ROOT, 20);
+        Operation op6 = new Operation(Operation.Type.RANDOM_STRING, 100);
         operationRepository.save(op1);
         operationRepository.save(op2);
         operationRepository.save(op3);

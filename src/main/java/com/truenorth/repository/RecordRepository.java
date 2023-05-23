@@ -1,6 +1,7 @@
 package com.truenorth.repository;
 
 import com.truenorth.entity.Record;
+import com.truenorth.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
@@ -12,6 +13,8 @@ import java.util.Optional;
 @Repository
 public interface RecordRepository extends CrudRepository<Record, Long> {
     Page<Record> findByUserAndOperation(Long userId, Long operationId, Pageable pageable);
+
+    List<Record> findByUser(User user);
 
     Optional<Record> findByIdAndDeletedFalse(Long id);
 

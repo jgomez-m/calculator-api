@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class NewRecordDTO {
 
     @JsonProperty
-    private Long userId;
+    private String userName;
     @JsonProperty
-    private Long operationId;
+    private String operationType;
     @JsonProperty
     private Double amount = 0.0;
 
@@ -15,20 +15,20 @@ public class NewRecordDTO {
 
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public Long getOperationId() {
-        return operationId;
+    public String getOperationType() {
+        return operationType;
     }
 
-    public void setOperationId(Long operationId) {
-        this.operationId = operationId;
+    public void setOperationType(String operationType) {
+        this.operationType = operationType;
     }
 
     public Double getAmount() {

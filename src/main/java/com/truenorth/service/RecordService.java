@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,10 +41,10 @@ public class RecordService {
     public Record createRecord(NewRecordDTO newRecordDTO) {
         Record record = new Record();
         record.setDeleted(false);
-        double amount = newRecordDTO.getAmount();
-        Long userId = newRecordDTO.getUserId();
-        User user = userRepository.findById(userId).get();
-        Operation operation = operationRepository.findById(newRecordDTO.getOperationId()).get();
+        Double amount = newRecordDTO.getAmount();
+        String userName = newRecordDTO.getUserName();
+        User user = userRepository.findByUsername(userName).get();
+        Operation operation = operationRepository.findByType(Operation.Type.valueOf(newRecordDTO.getOperationType())).get();
         if (operation.getCost() <= user.getBalance()) {
             switch (operation.getType()) {
                 case ADDITION:
@@ -80,7 +81,9 @@ public class RecordService {
         record.setUserBalance(newBalance);
         record.setOperation(operation);
         record.setUser(user);
-        record.setAmount(amount);
+        if(newRecordDTO.getAmount() != null) {
+            record.setAmount(amount);
+        }
         return recordRepository.save(record);
     }
 
@@ -101,11 +104,19 @@ public class RecordService {
         recordRepository.save(existingRecord);
     }
 
-    public Page<Record> getRecords(Long operationId, Long userId, Pageable pageable) {
-        return recordRepository.findByUserAndOperation(userId, operationId, pageable);
+    public List<Record> getRecords(String userName) {
+        Optional<User> userOptional = userRepository.findByUsername(userName);
+        if(userOptional.isPresent()) {
+            return recordRepository.findByUser(userOptional.get());
+        }
+        return Collections.emptyList();
     }
 
     public List<Record> getAllRecords() {
         return (List<Record>) recordRepository.findAll();
+    }
+
+    public Page<Record> getRecords(long userId, long operationId, Pageable pageable) {
+        return recordRepository.findByUserAndOperation(userId, operationId, pageable);
     }
 }
