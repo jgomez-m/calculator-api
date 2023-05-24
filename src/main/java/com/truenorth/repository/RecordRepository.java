@@ -16,6 +16,8 @@ public interface RecordRepository extends CrudRepository<Record, Long> {
 
     List<Record> findByUser(User user);
 
+    List<Record> findByUserAndDeletedFalse(User user);
+
     Optional<Record> findByIdAndDeletedFalse(Long id);
 
     List<Record> findAllByDeletedFalse();

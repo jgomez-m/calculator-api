@@ -102,7 +102,8 @@ public class Record {
         this.date = date;
     }
 
-    public void setDeleted(boolean b) {
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public boolean isDeleted() {

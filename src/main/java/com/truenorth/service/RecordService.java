@@ -98,16 +98,16 @@ public class RecordService {
         return recordRepository.save(existingRecord);
     }
 
-    public void deleteRecord(Long id) {
+    public Record deleteRecord(Long id) {
         Record existingRecord = getRecordById(id);
         existingRecord.setDeleted(true); // Soft-delete the record
-        recordRepository.save(existingRecord);
+        return recordRepository.save(existingRecord);
     }
 
     public List<Record> getRecords(String userName) {
         Optional<User> userOptional = userRepository.findByUsername(userName);
         if(userOptional.isPresent()) {
-            return recordRepository.findByUser(userOptional.get());
+            return recordRepository.findByUserAndDeletedFalse(userOptional.get());
         }
         return Collections.emptyList();
     }

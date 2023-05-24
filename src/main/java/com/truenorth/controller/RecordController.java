@@ -49,7 +49,7 @@ public class RecordController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteRecord(@PathVariable Long id) {
-        recordService.deleteRecord(id);
+    public Record deleteRecord(@PathVariable Long id) {
+        return recordService.deleteRecord(id);
     }
 }
