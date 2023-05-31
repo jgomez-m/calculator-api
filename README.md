@@ -36,5 +36,7 @@ This API exposes mainly 4 endPoints:
 - /login
 
 ## Users and passwords:
+
 juliangomez@gmail.com: 123
+
 test@test.com: abc
