@@ -6,8 +6,8 @@ This is a simple calculator application that provides various mathematical opera
 
 Before running the application, ensure that you have the following installed:
 
-- Java Development Kit (JDK) 8 or higher
-- Apache Maven
+- Java Development Kit (JDK) 11
+- Apache Maven 3.8.1
 
 ## Getting Started
 
@@ -34,3 +34,7 @@ This API exposes mainly 4 endPoints:
 - /records
 - /operations
 - /login
+
+## Users and passwords:
+juliangomez@gmail.com: 123
+test@test.com: abc
